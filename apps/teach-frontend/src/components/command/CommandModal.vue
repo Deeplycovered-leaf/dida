@@ -7,7 +7,6 @@ import { useCommandModal } from './commandModal'
 
 const { resetSearch } = useSearch()
 const { registerKeyboardShortcut, showCommandModal } = useCommandModal()
-
 registerKeyboardShortcut()
 
 watch(() => showCommandModal.value, (v) => {
@@ -21,5 +20,3 @@ watch(() => showCommandModal.value, (v) => {
     <CommandBody />
   </NModal>
 </template>
-
-<style scoped></style>

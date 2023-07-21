@@ -14,5 +14,3 @@ const { filteredTasks } = useSearchTasks()
     <NEmpty v-show="!filteredTasks.length" description="没有找到哦" />
   </div>
 </template>
-
-<style scoped></style>

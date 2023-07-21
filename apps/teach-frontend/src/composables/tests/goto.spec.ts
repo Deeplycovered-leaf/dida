@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useRouter } from 'vue-router'
-import { useGoto } from './goto'
+import { useGoto } from '../goto'
 import { RouteNames } from '@/router/const'
 
 vi.mock('vue-router')

@@ -1,14 +1,15 @@
 import { mount } from '@vue/test-utils'
-export function useSetup(setup: () => void) {
-  const Comp = {
-    render() {},
-    setup,
-  }
+import type { createRouterMock } from 'vue-router-mock'
 
-  const wrapper = mount(Comp)
+export function useSetup(setup: () => void) {
+  const comp = {
+    setup,
+    render() {},
+  }
+  const wrapper = mount(comp)
 
   return {
     wrapper,
-    router: wrapper.router,
+    router: wrapper.router as ReturnType<typeof createRouterMock>,
   }
 }

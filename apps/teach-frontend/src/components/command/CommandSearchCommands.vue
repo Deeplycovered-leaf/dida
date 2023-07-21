@@ -6,7 +6,7 @@ import type { Command } from '@/composables/command'
 const { closeCommandModal } = useCommandModal()
 const { filteredCommands } = useSearchCommands()
 
-const handleClick = (command: Command) => {
+function handleClick(command: Command) {
   command.execute()
   closeCommandModal()
 }
@@ -19,5 +19,3 @@ const handleClick = (command: Command) => {
     </div>
   </div>
 </template>
-
-<style scoped></style>

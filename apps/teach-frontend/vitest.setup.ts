@@ -1,25 +1,21 @@
-import {
-  VueRouterMock,
-  createRouterMock,
-  injectRouterMock,
-} from 'vue-router-mock'
-import { beforeEach, vi } from 'vitest'
+import { VueRouterMock, createRouterMock, injectRouterMock } from 'vue-router-mock'
 import { config } from '@vue/test-utils'
+import { beforeEach, vi } from 'vitest'
 
-function setupRouterMock() {
-  const router = createRouterMock({
+setup_router_mock()
+
+function setup_router_mock() {
+  const router_mock = createRouterMock({
     spy: {
       create: fn => vi.fn(fn),
       reset: spy => spy.mockClear(),
     },
   })
 
-  beforeEach(() => {
-    router.reset()
-    injectRouterMock(router)
-  })
-
   config.plugins.VueWrapper.install(VueRouterMock)
-}
 
-setupRouterMock()
+  beforeEach(() => {
+    router_mock.reset()
+    injectRouterMock(router_mock)
+  })
+}

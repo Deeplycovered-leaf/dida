@@ -2,7 +2,6 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import { useIsMac } from '@/composables'
 
 const showCommandModal = ref(false)
-
 export function useCommandModal() {
   function openCommandModal() {
     showCommandModal.value = true

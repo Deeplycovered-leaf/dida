@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { NConfigProvider } from 'naive-ui'
-import BaseLayout from './layout/BaseLayout.vue'
 import { useCommand } from '@/composables/command'
 import { useThemeStore } from '@/store'
+import BaseLayout from '@/components/layout/BaseLayout.vue'
 
 const themeStore = useThemeStore()
 const { initCommands } = useCommand()
@@ -16,5 +16,3 @@ initCommands()
     </BaseLayout>
   </NConfigProvider>
 </template>
-
-<style scoped></style>

@@ -16,7 +16,7 @@ const tasksStore = useTasksStore()
 const tasksSelectorStore = useTasksSelectorStore()
 const { closeCommandModal } = useCommandModal()
 
-const goTo = async () => {
+async function goTo() {
   if (props.from) {
     await tasksSelectorStore.setCurrentSelector(props.from)
     tasksStore.changeActiveTask(props.id)
@@ -58,5 +58,3 @@ const goTo = async () => {
     </NEllipsis>
   </div>
 </template>
-
-<style scoped></style>
