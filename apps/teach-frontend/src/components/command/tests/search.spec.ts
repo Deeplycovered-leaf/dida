@@ -7,8 +7,7 @@ vi.mock('../searchTasks.ts', () => {
   return {
     useSearchTasks() {
       return {
-        searchTasks,
-        resetSearchTasks,
+        searchTasks, resetSearchTasks,
       }
     },
   }
@@ -20,8 +19,7 @@ vi.mock('../searchCommands.ts', () => {
   return {
     useSearchCommands() {
       return {
-        searchCommands,
-        resetSearchCommands,
+        searchCommands, resetSearchCommands,
       }
     },
   }
@@ -32,92 +30,92 @@ describe('search', () => {
     vi.useFakeTimers()
 
     const { resetSearch } = useSearch()
-
     resetSearch()
 
     await vi.runAllTimersAsync()
 
-    vi.clearAllMocks()
-    // resetSearchCommands.mockClear()
-    // resetSearchTasks.mockClear()
-    // searchTasks.mockClear()
-    // searchCommands.mockClear()
+    searchTasks.mockClear()
+    resetSearchTasks.mockClear()
+    searchCommands.mockClear()
+    resetSearchCommands.mockClear()
   })
-  // 只测试一个关注点
+
   it('should be loading is true when search is start', async () => {
     const { search, loading } = useSearch()
 
-    search.value = '吃饭'
+    search.value = 'test'
 
     await vi.advanceTimersToNextTimerAsync()
 
     expect(loading.value).toBe(true)
   })
 
-  it('should be loading is false when search is complete', async () => {
+  it('should be loading is false when search is end', async () => {
     const { search, loading } = useSearch()
 
-    search.value = '吃饭'
+    search.value = 'test'
+
+    // await vi.advanceTimersToNextTimerAsync()
+    // await vi.advanceTimersToNextTimerAsync()
 
     await vi.runAllTimersAsync()
 
     expect(loading.value).toBe(false)
   })
 
-  it('should be searching is true when search is complete', async () => {
+  it('should be searching is true when search is end', async () => {
     const { search, searching } = useSearch()
 
-    search.value = '吃饭'
+    search.value = 'test'
 
     await vi.runAllTimersAsync()
 
     expect(searching.value).toBe(true)
   })
 
-  it('search tasks', async () => {
+  it('should be search tasks', async () => {
     const { search } = useSearch()
 
-    search.value = '吃饭'
+    search.value = 'test'
 
     await vi.runAllTimersAsync()
 
-    expect(searchTasks).toBeCalledWith('吃饭')
+    expect(searchTasks).toBeCalledWith('test')
   })
 
-  describe('search commands', () => {
-    it('normal', async () => {
+  describe('search command', () => {
+    it('should be search tasks command', async () => {
       const { search } = useSearch()
 
-      search.value = '>主页'
+      search.value = '>test'
 
       await vi.runAllTimersAsync()
 
-      expect(searchCommands).toBeCalledWith('主页')
+      expect(searchCommands).toBeCalledWith('test')
     })
 
-    it('removes the trailing white space', async () => {
+    it('search tasks command remove trailing white space', async () => {
       const { search } = useSearch()
 
-      search.value = '>主页 '
+      search.value = '>test  '
 
       await vi.runAllTimersAsync()
 
-      expect(searchCommands).toBeCalledWith('主页')
+      expect(searchCommands).toBeCalledWith('test')
     })
   })
 
   it('should be reset when search is empty', async () => {
-    const { search, searching, loading } = useSearch()
+    const { search, loading, searching } = useSearch()
 
-    search.value = '吃饭'
+    search.value = 'test'
     await vi.runAllTimersAsync()
-
     search.value = ''
     await vi.runAllTimersAsync()
 
-    expect(searching.value).toBe(false)
     expect(loading.value).toBe(false)
-    expect(resetSearchCommands).toBeCalled()
+    expect(searching.value).toBe(false)
     expect(resetSearchTasks).toBeCalled()
+    expect(resetSearchCommands).toBeCalled()
   })
 })
