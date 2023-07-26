@@ -11,6 +11,7 @@ import {
   fetchUpdateTaskPosition,
   // fetchUpdateTaskProperties,
   fetchUpdateTaskTitle,
+  fetch_update_task_property,
 } from '@/api'
 import { TasksSelectorType, useTasksSelectorStore } from '@/store'
 import type { TaskResponse } from '@/api/types'
@@ -180,10 +181,24 @@ export const useTasksStore = defineStore('tasksStore', () => {
   //   }
   // }
 
+  function update_task_property(task: Task, propertys: Partial<Pick<Task, 'content' | 'title' | 'position'>>) {
+    let key: keyof typeof propertys
+    for (key in propertys) {
+      const new_value = propertys[key]
+      const old_value = task[key]
+
+      if (new_value !== old_value) {
+        Reflect.set(task, key, new_value)
+        fetch_update_task_property(task.id, { [key]: new_value })
+      }
+    }
+  }
+
   return {
     tasks,
     currentActiveTask,
     // updateTaskProperties,
+    update_task_property,
     addTask,
     removeTask,
     completeTask,

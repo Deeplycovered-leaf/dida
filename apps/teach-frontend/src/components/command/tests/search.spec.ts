@@ -34,10 +34,11 @@ describe('search', () => {
 
     await vi.runAllTimersAsync()
 
-    searchTasks.mockClear()
-    resetSearchTasks.mockClear()
-    searchCommands.mockClear()
-    resetSearchCommands.mockClear()
+    // searchTasks.mockClear()
+    // resetSearchTasks.mockClear()
+    // searchCommands.mockClear()
+    // resetSearchCommands.mockClear()
+    vi.clearAllMocks()
   })
 
   it('should be loading is true when search is start', async () => {
