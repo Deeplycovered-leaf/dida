@@ -10,7 +10,7 @@ vi.mock('@/api')
 
 let position = 0
 let _id = 0
-function create_task_response(title: string, status: TaskStatus = TaskStatus.ACTIVE) {
+export function create_task_response(title: string, status: TaskStatus = TaskStatus.ACTIVE) {
   return {
     title,
     content: '',
