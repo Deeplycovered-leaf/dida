@@ -59,3 +59,7 @@ export function fetchUpdateTaskPosition(taskId: Task['id'], position: number) {
     position,
   })
 }
+
+export function fetch_update_task_property(taskId: Task['id'], properties: any) {
+  return http.patch<TaskResponse>(`/tasks/${taskId}`, properties)
+}
