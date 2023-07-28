@@ -58,3 +58,5 @@ async function goTo() {
     </NEllipsis>
   </div>
 </template>
+
+<style scoped></style>

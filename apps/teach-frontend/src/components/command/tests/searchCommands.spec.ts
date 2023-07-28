@@ -13,7 +13,6 @@ describe('searchCommands', () => {
     const { resetSearchCommands } = useSearchCommands()
     resetSearchCommands()
   })
-
   it('should be search a command', () => {
     const { searchCommands, filteredCommands } = useSearchCommands()
 

@@ -114,7 +114,6 @@ describe('search', () => {
       const { filteredTasks } = useSearchTasks()
 
       search.value = '吃饭'
-
       await vi.runAllTimersAsync()
 
       expect(filteredTasks.value[0].item.done).toBe(false)
@@ -165,7 +164,6 @@ describe('search', () => {
       search.value = '>'
 
       await vi.runAllTimersAsync()
-
       expect(filteredCommands.value.length).toBe(2)
     })
   })

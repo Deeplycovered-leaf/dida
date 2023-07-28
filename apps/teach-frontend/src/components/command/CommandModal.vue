@@ -20,3 +20,5 @@ watch(() => showCommandModal.value, (v) => {
     <CommandBody />
   </NModal>
 </template>
+
+<style scoped></style>

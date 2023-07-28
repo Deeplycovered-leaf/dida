@@ -29,3 +29,5 @@ const { isSearchCommand, search, loading, searching } = useSearch()
     </div>
   </div>
 </template>
+
+<style scoped></style>
