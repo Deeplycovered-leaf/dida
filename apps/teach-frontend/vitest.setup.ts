@@ -1,3 +1,4 @@
+import 'fake-indexeddb/auto'
 import { VueRouterMock, createRouterMock, injectRouterMock } from 'vue-router-mock'
 import { config } from '@vue/test-utils'
 import { beforeEach, vi } from 'vitest'
