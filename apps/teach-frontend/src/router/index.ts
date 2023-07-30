@@ -3,11 +3,11 @@ import type { RouteRecordRaw, Router } from 'vue-router'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { RouteNames } from './const'
 import { SettingsRoute } from './settings'
-import { messageRedirectToSignIn } from '@/composables/message'
-import { finishLoading, startLoading } from '@/composables/loadingBar'
-import { checkHaveToken } from '@/utils/token'
 import Task from '@/pages/Task.vue'
 import Login from '@/pages/Login.vue'
+import { checkHaveToken } from '@/utils/token'
+import { finishLoading, startLoading } from '@/composables/loadingBar'
+import { messageRedirectToSignIn } from '@/composables'
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -43,11 +43,10 @@ export function setupRouterGuard(router: Router) {
   })
 
   router.beforeEach((to, from, next) => {
-    if (to.matched.some(r => r.meta.requiresAuth)) {
+    if (to.meta.requiresAuth) {
       if (checkHaveToken())
         next()
-      else
-        messageRedirectToSignIn(() => next({ name: RouteNames.LOGIN }))
+      else messageRedirectToSignIn(() => next({ name: RouteNames.LOGIN }))
     }
     else {
       next()
