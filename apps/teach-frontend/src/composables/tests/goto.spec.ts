@@ -1,7 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useRouter } from 'vue-router'
-import { useGoto } from '../goto'
+import { goToLogin, useGoto } from '../goto'
+import { setupRouter } from '@/tests/helper'
 import { RouteNames } from '@/router/const'
+import { routes } from '@/router'
 
 vi.mock('vue-router')
 
@@ -46,5 +48,13 @@ describe('goto', () => {
     expect(push).toBeCalledWith({
       name: RouteNames.SETTINGS_THEME,
     })
+  })
+
+  it('should go to the login page ', async () => {
+    const router = setupRouter({ routes })
+
+    goToLogin()
+
+    expect(router.replace).toBeCalledWith({ name: RouteNames.LOGIN })
   })
 })
